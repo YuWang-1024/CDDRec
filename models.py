@@ -29,7 +29,7 @@ class CDDRecModel(nn.Module):
         self.conditional_encoder = Encoder(args) 
         self.item_embeddings = nn.Embedding(args.item_size, args.hidden_size, padding_idx=0)
         self.position_embeddings = nn.Embedding(args.max_seq_length, args.hidden_size) 
-        self.decoder = nn.TransformerDecoderLayer(d_model=args.hidden_size, nhead=args.num_attention_heads, dim_feedforward=args.hidden_size, dropout=args.attention_probs_dropout_prob, activation=args.hidden_act)
+        self.decoder = nn.TransformerDecoderLayer(d_model=args.hidden_size, nhead=args.num_attention_heads, dim_feedforward=args.hidden_size, dropout=args.attention_probs_dropout_prob, activation=args.hidden_act, batch_first=True)
         self.LayerNorm = LayerNorm(args.hidden_size, eps=1e-12)
         self.dropout = nn.Dropout(args.hidden_dropout_prob)
         self.args = args
